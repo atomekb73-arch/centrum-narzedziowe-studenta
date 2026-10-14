@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Baza Wiedzy & Kalendarz Akademicki WSKZ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    /* Płynne przewijanie i zapobieganie layout shift */
+    html { scroll-behavior: smooth; }
+    .overscroll-contain { overscroll-behavior: contain; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- Header: Adaptacyjny (flex-col na mobile, flex-row na desktop) -->
+  <header class="w-full bg-white border-b border-slate-200 sticky top-0 z-20">
+    <div class="w-full max-w-6xl mx-auto px-4 py-3.5 md:px-8 md:py-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-sm shrink-0">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-base md:text-lg font-bold text-slate-900 leading-tight">Centrum Narzędziowe Studenta</h1>
+          <p class="text-xs text-slate-500 font-medium">Wyższa Szkoła Kształcenia Zawodowego</p>
+        </div>
+      </div>
+      <a href="https://teamup.com/ksev4cuog885vi48i8?view=m" target="_blank" rel="noopener noreferrer" 
+         class="w-full md:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 md:py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg shadow-sm transition active:scale-[0.98]">
+        Otwórz Teamup ↗
+      </a>
+    </div>
+  </header>
+
+  <!-- Sekcja Główna: Adaptacyjny Kontener -->
+  <main class="w-full max-w-6xl mx-auto px-4 py-6 md:px-8 md:py-12 flex-grow">
+    
+    <!-- Hero / Tytuł (Szeroki układ na desktopie bez sztucznego łamania wierszy) -->
+    <div class="text-center w-full max-w-4xl lg:max-w-5xl mx-auto mb-8 md:mb-12 px-2">
+      <span class="inline-block px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-full border border-indigo-100 mb-3">
+        Szybkie przewodniki i one-pagery
+      </span>
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight max-w-none break-words md:whitespace-nowrap text-center">
+        Jak skutecznie korzystać z kalendarza uczelnianego?
+      </h2>
+      <p class="mt-2.5 text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed max-w-3xl md:max-w-4xl mx-auto text-center">
+        Wybierz interesujący Cię temat, aby otworzyć zwięzły poradnik krok po kroku lub pobrać materiał referencyjny.
+      </p>
+    </div>
+
+    <!-- Siatka Kafelków (Grid: 1 kolumna na mobile < 768px, 2-3 kolumny na desktop >= 768px) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+
+      <!-- KAFELEK 1: Synchronizacja (Wyróżniony / Duży, wertykalny na mobile z pełnym przyciskiem) -->
+      <div onclick="openModal('modal-sync')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('modal-sync')" class="cursor-pointer md:col-span-2 lg:col-span-2 bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 text-white rounded-2xl p-5 md:p-6 shadow-md border border-slate-800 flex flex-col justify-between hover:shadow-xl transition group focus:outline-none focus:ring-2 focus:ring-indigo-400/40">
+        <div>
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <span class="px-2.5 py-1 bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 text-xs font-medium rounded-md w-fit">
+              Kluczowy proces • 2 kroki
+            </span>
+            <div class="w-11 h-11 rounded-2xl flex items-center justify-center bg-white/10 text-cyan-300 ring-1 ring-white/15 group-hover:scale-105 transition-all duration-200 shrink-0">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+                <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+                <path d="M16 21h5v-5"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-lg md:text-xl font-bold group-hover:text-indigo-200 transition">
+            Synchronizacja z Kalendarzem Google i telefonem
+          </h3>
+          <p class="mt-2 text-xs md:text-sm text-slate-300 leading-relaxed max-w-xl">
+            Jak dodać zewnętrzny link iCal na komputerze, aktywować suwak synchronizacji w aplikacji mobilnej oraz zrozumieć cykle odświeżania danych (8–12h).
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-slate-800/80 flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <span class="text-xs text-slate-400 font-medium">Format: One-Pager + Instrukcja wideo</span>
+          <button type="button" onclick="event.stopPropagation(); openModal('modal-sync')" class="w-full md:w-auto inline-flex items-center justify-center gap-1.5 py-2.5 md:py-1 px-4 bg-indigo-600/30 hover:bg-indigo-600/50 md:bg-transparent md:hover:bg-transparent rounded-xl md:rounded-none text-xs font-semibold text-indigo-300 hover:text-white transition">
+            Zobacz przewodnik →
+          </button>
+        </div>
+      </div>
+
+      <!-- KAFELEK 2: Instalacja -->
+      <div onclick="openModal('modal-installation')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('modal-installation')" class="cursor-pointer bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200/80 flex flex-col justify-between hover:border-indigo-400 hover:shadow-md transition group focus:outline-none focus:ring-2 focus:ring-indigo-500/20">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-11 h-11 rounded-2xl flex items-center justify-center bg-sky-50 text-sky-600 ring-1 ring-sky-100 group-hover:scale-105 transition-all duration-200">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="3"/>
+                <path d="M12 18h.01"/>
+                <path d="M12 7v6"/>
+                <path d="m9.5 10.5 2.5 2.5 2.5-2.5"/>
+              </svg>
+            </div>
+            <span class="text-xs text-slate-400 font-medium">Baza</span>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">
+            Instalacja aplikacji Teamup
+          </h3>
+          <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+            Pobranie oficjalnej aplikacji na iOS i Android oraz dodanie klucza kalendarza WSKZ za pomocą linku lub kodu QR.
+          </p>
+        </div>
+        <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-[11px] text-slate-400">Czas czytania: 1 min</span>
+          <button type="button" onclick="event.stopPropagation(); openModal('modal-installation')" class="text-xs font-semibold text-slate-700 group-hover:text-indigo-600 hover:text-indigo-600 transition flex items-center gap-1">
+            Otwórz →
+          </button>
+        </div>
+      </div>
+
+      <!-- KAFELEK 3: Filtrowanie widoków -->
+      <div onclick="openModal('modal-filtering')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('modal-filtering')" class="cursor-pointer bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200/80 flex flex-col justify-between hover:border-indigo-400 hover:shadow-md transition group focus:outline-none focus:ring-2 focus:ring-indigo-500/20">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-11 h-11 rounded-2xl flex items-center justify-center bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100 group-hover:scale-105 transition-all duration-200">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+              </svg>
+            </div>
+            <span class="text-xs text-slate-400 font-medium">Personalizacja</span>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">
+            Filtrowanie sub-kalendarzy
+          </h3>
+          <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+            Jak ukryć niepotrzebne wydarzenia i zostawić tylko swoje koła naukowe, zjazdy lub ogłoszenia Dziekanatu.
+          </p>
+        </div>
+        <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-[11px] text-slate-400">Format: One-Pager</span>
+          <button type="button" onclick="event.stopPropagation(); openModal('modal-filtering')" class="text-xs font-semibold text-slate-700 group-hover:text-indigo-600 hover:text-indigo-600 transition flex items-center gap-1">
+            Otwórz →
+          </button>
+        </div>
+      </div>
+
+      <!-- KAFELEK 4: Szybkie wyszukiwanie wydarzeń -->
+      <div onclick="openModal('modal-search')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('modal-search')" class="cursor-pointer bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200/80 flex flex-col justify-between hover:border-indigo-400 hover:shadow-md transition group focus:outline-none focus:ring-2 focus:ring-indigo-500/20">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-11 h-11 rounded-2xl flex items-center justify-center bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100 group-hover:scale-105 transition-all duration-200">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="7"/>
+                <path d="m21 21-4.35-4.35"/>
+                <path d="M11 8v6"/>
+                <path d="M8 11h6"/>
+              </svg>
+            </div>
+            <span class="text-xs text-slate-400 font-medium">Nawigacja</span>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">
+            Szybkie wyszukiwanie wydarzeń
+          </h3>
+          <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+            Wyszukiwanie po prelegentach, salach, hashtagach tematycznych oraz linkach do Google Meet i Teams.
+          </p>
+        </div>
+        <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-[11px] text-slate-400">Czas czytania: 2 min</span>
+          <button type="button" onclick="event.stopPropagation(); openModal('modal-search')" class="text-xs font-semibold text-slate-700 group-hover:text-indigo-600 hover:text-indigo-600 transition flex items-center gap-1">
+            Otwórz →
+          </button>
+        </div>
+      </div>
+
+      <!-- KAFELEK 5: Ustawianie przypomnień -->
+      <div onclick="openModal('modal-reminders')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('modal-reminders')" class="cursor-pointer bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200/80 flex flex-col justify-between hover:border-indigo-400 hover:shadow-md transition group focus:outline-none focus:ring-2 focus:ring-indigo-500/20">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-11 h-11 rounded-2xl flex items-center justify-center bg-amber-50 text-amber-600 ring-1 ring-amber-100 group-hover:scale-105 transition-all duration-200">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+              </svg>
+            </div>
+            <span class="text-xs text-slate-400 font-medium">Powiadomienia</span>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">
+            Ustawianie przypomnień
+          </h3>
+          <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+            Jak skonfigurować alerty mailowe i push na telefonie, aby nie przegapić warsztatów, wykładów i zebrań.
+          </p>
+        </div>
+        <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-[11px] text-slate-400">Format: Krok po kroku</span>
+          <button type="button" onclick="event.stopPropagation(); openModal('modal-reminders')" class="text-xs font-semibold text-slate-700 group-hover:text-indigo-600 hover:text-indigo-600 transition flex items-center gap-1">
+            Otwórz →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- MODALE: Adaptacyjny One-Pager Viewer (Pełny ekran na Mobile, Wyśrodkowany modal na Desktopie) -->
+
+  <!-- Modal 1: Synchronizacja z Kalendarzem Google -->
+  <div id="modal-sync" class="guide-modal fixed inset-0 z-50 hidden md:items-center md:justify-center md:p-6 p-0 bg-slate-950/80 backdrop-blur-sm transition-opacity duration-200" onclick="handleBackdropClick(event, 'modal-sync')">
+    <div class="relative w-full h-full md:h-auto md:max-w-4xl md:max-h-[90vh] flex flex-col bg-slate-950 md:bg-white text-white md:text-slate-900 md:rounded-2xl md:shadow-2xl overflow-hidden md:border md:border-slate-200">
+      
+      <!-- Nagłówek modala -->
+      <div class="px-4 py-3 md:px-6 md:py-3.5 border-b border-slate-800 md:border-slate-100 flex items-center justify-between bg-slate-900/95 md:bg-slate-50/80 shrink-0">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-indigo-950 text-cyan-300 ring-1 ring-slate-800 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+              <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+              <path d="M16 21h5v-5"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xs md:text-sm font-bold text-white md:text-slate-900 leading-tight">Synchronizacja z Google i telefonem</h3>
+            <p class="text-[11px] text-slate-400 md:text-slate-500">Konfiguracja Desktop & Mobile • Odświeżanie 8–12h</p>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-2">
+          <a href="Synchronizacja_Google_iCal.webp" target="_blank" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition" title="Powiększ w nowej karcie (Zoom)">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              <line x1="11" y1="8" x2="11" y2="14"/>
+              <line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+            <span>Zoom</span>
+          </a>
+          <button onclick="closeModal('modal-sync')" class="w-8 h-8 rounded-lg text-slate-400 hover:text-white md:hover:text-slate-700 hover:bg-slate-800 md:hover:bg-slate-200/60 flex items-center justify-center transition" aria-label="Zamknij podgląd">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Ciało modala ze scrollem dla wysokiej grafiki -->
+      <div class="flex-1 overflow-y-auto overscroll-contain p-2 sm:p-4 md:p-6 flex justify-center items-start bg-slate-950 md:bg-slate-100/60">
+        <a href="Synchronizacja_Google_iCal.webp" target="_blank" title="Kliknij, aby otworzyć w pełnym rozmiarze (Zoom)" class="cursor-zoom-in block w-full max-w-2xl">
+          <img src="Synchronizacja_Google_iCal.webp" alt="Przewodnik: Jak dodać i zsynchronizować uczelniany plan zajęć w Kalendarzu Google" class="max-w-3xl w-full h-auto rounded-xl md:rounded-2xl shadow-md border border-slate-800 md:border-slate-200/80 object-contain hover:shadow-lg transition">
+        </a>
+      </div>
+
+      <!-- Pasek akcji przypięty na dole na mobile / klasyczna stopka na desktopie -->
+      <div class="sticky bottom-0 bg-slate-900/90 backdrop-blur border-t border-slate-800 p-3 flex gap-2 md:static md:px-6 md:py-3.5 md:border-t md:border-slate-100 md:bg-white md:text-slate-500 md:flex md:items-center md:justify-between shrink-0">
+        <span class="hidden md:inline text-xs text-slate-500">Naciśnij <kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded text-[10px] font-mono">Esc</kbd> lub kliknij poza oknem</span>
+        <div class="flex items-center gap-2 w-full md:w-auto">
+          <a href="Synchronizacja_Google_iCal.webp" download="WSKZ_Poradnik_Synchronizacja_Google.webp" class="flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 py-2.5 md:py-1.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl md:rounded-lg text-xs font-semibold transition shadow-sm">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Pobierz infografikę
+          </a>
+          <button onclick="closeModal('modal-sync')" class="py-2.5 md:py-1.5 px-4 bg-slate-800 hover:bg-slate-700 md:bg-slate-900 md:hover:bg-slate-800 text-white rounded-xl md:rounded-lg text-xs font-semibold transition">
+            Zamknij
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal 2: Instalacja aplikacji Teamup -->
+  <div id="modal-installation" class="guide-modal fixed inset-0 z-50 hidden md:items-center md:justify-center md:p-6 p-0 bg-slate-950/80 backdrop-blur-sm transition-opacity duration-200" onclick="handleBackdropClick(event, 'modal-installation')">
+    <div class="relative w-full h-full md:h-auto md:max-w-4xl md:max-h-[90vh] flex flex-col bg-slate-950 md:bg-white text-white md:text-slate-900 md:rounded-2xl md:shadow-2xl overflow-hidden md:border md:border-slate-200">
+      
+      <!-- Nagłówek modala -->
+      <div class="px-4 py-3 md:px-6 md:py-3.5 border-b border-slate-800 md:border-slate-100 flex items-center justify-between bg-slate-900/95 md:bg-slate-50/80 shrink-0">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-sky-950 text-sky-400 md:bg-sky-50 md:text-sky-600 ring-1 ring-slate-800 md:ring-sky-100 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="3"/>
+              <path d="M12 18h.01"/>
+              <path d="M12 7v6"/>
+              <path d="m9.5 10.5 2.5 2.5 2.5-2.5"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xs md:text-sm font-bold text-white md:text-slate-900 leading-tight">Instalacja Teamup Calendar i kody QR</h3>
+            <p class="text-[11px] text-slate-400 md:text-slate-500">Android & iOS • WSKZ</p>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-2">
+          <a href="Dadaj_Nowy_Kalendarz.webp" target="_blank" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-sky-600 hover:bg-slate-100 rounded-lg transition" title="Powiększ w nowej karcie (Zoom)">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              <line x1="11" y1="8" x2="11" y2="14"/>
+              <line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+            <span>Zoom</span>
+          </a>
+          <button onclick="closeModal('modal-installation')" class="w-8 h-8 rounded-lg text-slate-400 hover:text-white md:hover:text-slate-700 hover:bg-slate-800 md:hover:bg-slate-200/60 flex items-center justify-center transition" aria-label="Zamknij podgląd">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Ciało modala ze scrollem dla wysokiej grafiki -->
+      <div class="flex-1 overflow-y-auto overscroll-contain p-2 sm:p-4 md:p-6 flex justify-center items-start bg-slate-950 md:bg-slate-100/60">
+        <a href="Dadaj_Nowy_Kalendarz.webp" target="_blank" title="Kliknij, aby otworzyć w pełnym rozmiarze (Zoom)" class="cursor-zoom-in block w-full max-w-3xl">
+          <img src="Dadaj_Nowy_Kalendarz.webp" alt="Przewodnik: Jak dodać kalendarz studencki w aplikacji Teamup Calendar - Instrukcja krok po kroku i kody QR" class="max-w-3xl w-full h-auto rounded-xl md:rounded-2xl shadow-md border border-slate-800 md:border-slate-200/80 object-contain hover:shadow-lg transition">
+        </a>
+      </div>
+
+      <!-- Pasek akcji przypięty na dole na mobile / klasyczna stopka na desktopie -->
+      <div class="sticky bottom-0 bg-slate-900/90 backdrop-blur border-t border-slate-800 p-3 flex gap-2 md:static md:px-6 md:py-3.5 md:border-t md:border-slate-100 md:bg-white md:text-slate-500 md:flex md:items-center md:justify-between shrink-0">
+        <span class="hidden md:inline text-xs text-slate-500">Naciśnij <kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded text-[10px] font-mono">Esc</kbd> lub kliknij poza oknem</span>
+        <div class="flex items-center gap-2 w-full md:w-auto">
+          <a href="Dadaj_Nowy_Kalendarz.webp" download="WSKZ_Poradnik_Instalacja_Teamup.webp" class="flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 py-2.5 md:py-1.5 px-4 bg-sky-600 hover:bg-sky-700 text-white rounded-xl md:rounded-lg text-xs font-semibold transition shadow-sm">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Pobierz infografikę
+          </a>
+          <button onclick="closeModal('modal-installation')" class="py-2.5 md:py-1.5 px-4 bg-slate-800 hover:bg-slate-700 md:bg-slate-900 md:hover:bg-slate-800 text-white rounded-xl md:rounded-lg text-xs font-semibold transition">
+            Zamknij
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal 3: Filtrowanie sub-kalendarzy -->
+  <div id="modal-filtering" class="guide-modal fixed inset-0 z-50 hidden md:items-center md:justify-center md:p-6 p-0 bg-slate-950/80 backdrop-blur-sm transition-opacity duration-200" onclick="handleBackdropClick(event, 'modal-filtering')">
+    <div class="relative w-full h-full md:h-auto md:max-w-4xl md:max-h-[90vh] flex flex-col bg-slate-950 md:bg-white text-white md:text-slate-900 md:rounded-2xl md:shadow-2xl overflow-hidden md:border md:border-slate-200">
+      
+      <!-- Nagłówek modala -->
+      <div class="px-4 py-3 md:px-6 md:py-3.5 border-b border-slate-800 md:border-slate-100 flex items-center justify-between bg-slate-900/95 md:bg-slate-50/80 shrink-0">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-indigo-950 text-indigo-400 md:bg-indigo-50 md:text-indigo-600 ring-1 ring-slate-800 md:ring-indigo-100 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xs md:text-sm font-bold text-white md:text-slate-900 leading-tight">Filtrowanie sub-kalendarzy — „Magiczne Oko”</h3>
+            <p class="text-[11px] text-slate-400 md:text-slate-500">Przewodnik one-pager • Psychologia WSKZ</p>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-2">
+          <a href="Filtrowanie_Magiczne_Oko-X2.webp" target="_blank" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition" title="Powiększ w nowej karcie (Zoom)">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              <line x1="11" y1="8" x2="11" y2="14"/>
+              <line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+            <span>Zoom</span>
+          </a>
+          <button onclick="closeModal('modal-filtering')" class="w-8 h-8 rounded-lg text-slate-400 hover:text-white md:hover:text-slate-700 hover:bg-slate-800 md:hover:bg-slate-200/60 flex items-center justify-center transition" aria-label="Zamknij podgląd">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Ciało modala ze scrollem dla wysokiej grafiki -->
+      <div class="flex-1 overflow-y-auto overscroll-contain p-2 sm:p-4 md:p-6 flex justify-center items-start bg-slate-950 md:bg-slate-100/60">
+        <a href="Filtrowanie_Magiczne_Oko-X2.webp" target="_blank" title="Kliknij, aby otworzyć w pełnym rozmiarze (Zoom)" class="cursor-zoom-in block w-full max-w-2xl">
+          <img src="Filtrowanie_Magiczne_Oko-X2.webp" alt="Przewodnik: Jak skutecznie korzystać z Kalendarza Wydziału Psychologii WSKZ - Filtrowanie Magicznym Okiem" class="max-w-3xl w-full h-auto rounded-xl md:rounded-2xl shadow-md border border-slate-800 md:border-slate-200/80 object-contain hover:shadow-lg transition">
+        </a>
+      </div>
+
+      <!-- Pasek akcji przypięty na dole na mobile / klasyczna stopka na desktopie -->
+      <div class="sticky bottom-0 bg-slate-900/90 backdrop-blur border-t border-slate-800 p-3 flex gap-2 md:static md:px-6 md:py-3.5 md:border-t md:border-slate-100 md:bg-white md:text-slate-500 md:flex md:items-center md:justify-between shrink-0">
+        <span class="hidden md:inline text-xs text-slate-500">Naciśnij <kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded text-[10px] font-mono">Esc</kbd> lub kliknij poza oknem</span>
+        <div class="flex items-center gap-2 w-full md:w-auto">
+          <a href="Filtrowanie_Magiczne_Oko-X2.webp" download="WSKZ_Poradnik_Filtrowanie_Kalendarza.webp" class="flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 py-2.5 md:py-1.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl md:rounded-lg text-xs font-semibold transition shadow-sm">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Pobierz infografikę
+          </a>
+          <button onclick="closeModal('modal-filtering')" class="py-2.5 md:py-1.5 px-4 bg-slate-800 hover:bg-slate-700 md:bg-slate-900 md:hover:bg-slate-800 text-white rounded-xl md:rounded-lg text-xs font-semibold transition">
+            Zamknij
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal 4: Szybkie wyszukiwanie wydarzeń -->
+  <div id="modal-search" class="guide-modal fixed inset-0 z-50 hidden md:items-center md:justify-center md:p-6 p-0 bg-slate-950/80 backdrop-blur-sm transition-opacity duration-200" onclick="handleBackdropClick(event, 'modal-search')">
+    <div class="relative w-full h-full md:h-auto md:max-w-4xl md:max-h-[90vh] flex flex-col bg-slate-950 md:bg-white text-white md:text-slate-900 md:rounded-2xl md:shadow-2xl overflow-hidden md:border md:border-slate-200">
+      
+      <!-- Nagłówek modala -->
+      <div class="px-4 py-3 md:px-6 md:py-3.5 border-b border-slate-800 md:border-slate-100 flex items-center justify-between bg-slate-900/95 md:bg-slate-50/80 shrink-0">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-950 text-emerald-400 md:bg-emerald-50 md:text-emerald-600 ring-1 ring-slate-800 md:ring-emerald-100 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7"/>
+              <path d="m21 21-4.35-4.35"/>
+              <path d="M11 8v6"/>
+              <path d="M8 11h6"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xs md:text-sm font-bold text-white md:text-slate-900 leading-tight">Błyskawiczne wyszukiwanie przedmiotów</h3>
+            <p class="text-[11px] text-slate-400 md:text-slate-500">Przewodnik one-pager • WSKZ</p>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-2">
+          <a href="public/guides/wyszukiwanie-wydarzen.webp" target="_blank" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-emerald-600 hover:bg-slate-100 rounded-lg transition" title="Powiększ w nowej karcie (Zoom)">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              <line x1="11" y1="8" x2="11" y2="14"/>
+              <line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+            <span>Zoom</span>
+          </a>
+          <button onclick="closeModal('modal-search')" class="w-8 h-8 rounded-lg text-slate-400 hover:text-white md:hover:text-slate-700 hover:bg-slate-800 md:hover:bg-slate-200/60 flex items-center justify-center transition" aria-label="Zamknij podgląd">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Ciało modala ze scrollem dla wysokiej grafiki -->
+      <div class="flex-1 overflow-y-auto overscroll-contain p-2 sm:p-4 md:p-6 flex justify-center items-start bg-slate-950 md:bg-slate-100/60">
+        <a href="public/guides/wyszukiwanie-wydarzen.webp" target="_blank" title="Kliknij, aby otworzyć w pełnym rozmiarze (Zoom)" class="cursor-zoom-in block w-full max-w-2xl">
+          <img src="public/guides/wyszukiwanie-wydarzen.webp" alt="Przewodnik: Jak błyskawicznie znaleźć swój przedmiot w Kalendarzu Wydziału Psychologii WSKZ - Wyszukiwarka i filtry" class="max-w-3xl w-full h-auto rounded-xl md:rounded-2xl shadow-md border border-slate-800 md:border-slate-200/80 object-contain hover:shadow-lg transition">
+        </a>
+      </div>
+
+      <!-- Pasek akcji przypięty na dole na mobile / klasyczna stopka na desktopie -->
+      <div class="sticky bottom-0 bg-slate-900/90 backdrop-blur border-t border-slate-800 p-3 flex gap-2 md:static md:px-6 md:py-3.5 md:border-t md:border-slate-100 md:bg-white md:text-slate-500 md:flex md:items-center md:justify-between shrink-0">
+        <span class="hidden md:inline text-xs text-slate-500">Naciśnij <kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded text-[10px] font-mono">Esc</kbd> lub kliknij poza oknem</span>
+        <div class="flex items-center gap-2 w-full md:w-auto">
+          <a href="public/guides/wyszukiwanie-wydarzen.webp" download="WSKZ_Poradnik_Wyszukiwanie_Wydarzen.webp" class="flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 py-2.5 md:py-1.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl md:rounded-lg text-xs font-semibold transition shadow-sm">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Pobierz infografikę
+          </a>
+          <button onclick="closeModal('modal-search')" class="py-2.5 md:py-1.5 px-4 bg-slate-800 hover:bg-slate-700 md:bg-slate-900 md:hover:bg-slate-800 text-white rounded-xl md:rounded-lg text-xs font-semibold transition">
+            Zamknij
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal 5: Ustawianie przypomnień -->
+  <div id="modal-reminders" class="guide-modal fixed inset-0 z-50 hidden md:items-center md:justify-center md:p-6 p-0 bg-slate-950/80 backdrop-blur-sm transition-opacity duration-200" onclick="handleBackdropClick(event, 'modal-reminders')">
+    <div class="relative w-full h-full md:h-auto md:max-w-4xl md:max-h-[90vh] flex flex-col bg-slate-950 md:bg-white text-white md:text-slate-900 md:rounded-2xl md:shadow-2xl overflow-hidden md:border md:border-slate-200">
+      
+      <!-- Nagłówek modala -->
+      <div class="px-4 py-3 md:px-6 md:py-3.5 border-b border-slate-800 md:border-slate-100 flex items-center justify-between bg-slate-900/95 md:bg-slate-50/80 shrink-0">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-amber-950 text-amber-400 md:bg-amber-50 md:text-amber-600 ring-1 ring-slate-800 md:ring-amber-100 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+              <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xs md:text-sm font-bold text-white md:text-slate-900 leading-tight">Ustawianie przypomnień w kalendarzu</h3>
+            <p class="text-[11px] text-slate-400 md:text-slate-500">Alerty mailowe i aplikacja • WSKZ</p>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-2">
+          <a href="Przypomnienia_i_dzwoneczek.webp" target="_blank" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-amber-600 hover:bg-slate-100 rounded-lg transition" title="Powiększ w nowej karcie (Zoom)">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              <line x1="11" y1="8" x2="11" y2="14"/>
+              <line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+            <span>Zoom</span>
+          </a>
+          <button onclick="closeModal('modal-reminders')" class="w-8 h-8 rounded-lg text-slate-400 hover:text-white md:hover:text-slate-700 hover:bg-slate-800 md:hover:bg-slate-200/60 flex items-center justify-center transition" aria-label="Zamknij podgląd">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Ciało modala ze scrollem dla wysokiej grafiki -->
+      <div class="flex-1 overflow-y-auto overscroll-contain p-2 sm:p-4 md:p-6 flex justify-center items-start bg-slate-950 md:bg-slate-100/60">
+        <a href="Przypomnienia_i_dzwoneczek.webp" target="_blank" title="Kliknij, aby otworzyć w pełnym rozmiarze (Zoom)" class="cursor-zoom-in block w-full max-w-2xl">
+          <img src="Przypomnienia_i_dzwoneczek.webp" alt="Przewodnik: Jak ustawić przypomnienie w kalendarzu Teamup - Instrukcja krok po kroku" class="max-w-3xl w-full h-auto rounded-xl md:rounded-2xl shadow-md border border-slate-800 md:border-slate-200/80 object-contain hover:shadow-lg transition">
+        </a>
+      </div>
+
+      <!-- Pasek akcji przypięty na dole na mobile / klasyczna stopka na desktopie -->
+      <div class="sticky bottom-0 bg-slate-900/90 backdrop-blur border-t border-slate-800 p-3 flex gap-2 md:static md:px-6 md:py-3.5 md:border-t md:border-slate-100 md:bg-white md:text-slate-500 md:flex md:items-center md:justify-between shrink-0">
+        <span class="hidden md:inline text-xs text-slate-500">Naciśnij <kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded text-[10px] font-mono">Esc</kbd> lub kliknij poza oknem</span>
+        <div class="flex items-center gap-2 w-full md:w-auto">
+          <a href="Przypomnienia_i_dzwoneczek.webp" download="WSKZ_Poradnik_Przypomnienia_Teamup.webp" class="flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 py-2.5 md:py-1.5 px-4 bg-amber-600 hover:bg-amber-700 text-white rounded-xl md:rounded-lg text-xs font-semibold transition shadow-sm">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Pobierz infografikę
+          </a>
+          <button onclick="closeModal('modal-reminders')" class="py-2.5 md:py-1.5 px-4 bg-slate-800 hover:bg-slate-700 md:bg-slate-900 md:hover:bg-slate-800 text-white rounded-xl md:rounded-lg text-xs font-semibold transition">
+            Zamknij
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Stopka Uczelniana -->
+  <footer class="w-full bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 mt-8">
+    <p>Projekt przygotowany dla społeczności akademickiej Wyższej Szkoły Kształcenia Zawodowego.</p>
+    <p class="mt-1 text-slate-400">Wsparcie techniczne kalendarza</p>
+  </footer>
+
+  <!-- Skrypt logiki detekcji urządzenia i obsługi modali -->
+  <script>
+    /**
+     * 1. Hook / Funkcja detekcji szerokości okna (Client-side Media Query Detection)
+     * const isMobile = useMediaQuery('(max-width: 767px)');
+     */
+    function useMediaQuery(query, callback) {
+      const mql = window.matchMedia(query);
+      let matches = mql.matches;
+
+      const listener = (e) => {
+        matches = e.matches;
+        if (typeof callback === 'function') {
+          callback(matches);
+        }
+        applyAdaptiveState(matches);
+      };
+
+      if (mql.addEventListener) {
+        mql.addEventListener('change', listener);
+      } else {
+        mql.addListener(listener);
+      }
+
+      if (typeof callback === 'function') {
+        callback(matches);
+      }
+      applyAdaptiveState(matches);
+
+      return () => {
+        if (mql.removeEventListener) {
+          mql.removeEventListener('change', listener);
+        } else {
+          mql.removeListener(listener);
+        }
+      };
+    }
+
+    // Dynamiczny stan urządzenia (dostępny globalnie)
+    let isMobile = window.matchMedia('(max-width: 767px)').matches;
+
+    function applyAdaptiveState(mobile) {
+      isMobile = mobile;
+      document.documentElement.dataset.device = mobile ? 'mobile' : 'desktop';
+      window.dispatchEvent(new CustomEvent('adaptiveLayoutChange', { detail: { isMobile: mobile } }));
+    }
+
+    // Inicjalizacja hooka useMediaQuery
+    useMediaQuery('(max-width: 767px)', (mobile) => {
+      isMobile = mobile;
+    });
+
+    /**
+     * 2. Adaptacyjny zarządca modali
+     */
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.classList.add('overflow-hidden');
+
+        // Na urządzeniach mobilnych automatycznie przewiń na samą górę grafiki
+        const scrollContainer = modal.querySelector('.overflow-y-auto');
+        if (scrollContainer) {
+          scrollContainer.scrollTop = 0;
+        }
+      }
+    }
+
+    function closeModal(id) {
+      const modal = typeof id === 'string' ? document.getElementById(id) : id;
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        const anyOpen = document.querySelectorAll('.guide-modal:not(.hidden)').length > 0;
+        if (!anyOpen) {
+          document.body.classList.remove('overflow-hidden');
+        }
+      }
+    }
+
+    function closeAllModals() {
+      document.querySelectorAll('.guide-modal').forEach(modal => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      });
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function handleBackdropClick(event, id) {
+      if (event.target.id === id) {
+        closeModal(id);
+      }
+    }
+
+    // Klawisz Escape do szybkiego zamykania
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeAllModals();
+      }
+    });
+
+    // Aliasy wstecznej kompatybilności
+    function openGuideModal() {
+      openModal('modal-filtering');
+    }
+    function closeGuideModal() {
+      closeModal('modal-filtering');
+    }
+  </script>
+
+</body>
+</html>
